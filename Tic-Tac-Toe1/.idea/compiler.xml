@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <bytecodeTargetLevel>
+      <module name="Problems-Bus_tour_main" target="11" />
+      <module name="Problems-Bus_tour_test" target="11" />
+      <module name="Problems-Check_the_given_numbers_are_different_main" target="11" />
+      <module name="Problems-Check_the_given_numbers_are_different_test" target="11" />
+      <module name="Problems-Even_or_odd_main" target="11" />
+      <module name="Problems-Even_or_odd_test" target="11" />
+      <module name="Problems-Extracting_a_substring_main" target="11" />
+      <module name="Problems-Extracting_a_substring_test" target="11" />
+      <module name="Problems-Hello!_main" target="11" />
+      <module name="Problems-Hello!_test" target="11" />
+      <module name="Problems-Lucky_number_main" target="11" />
+      <module name="Problems-Lucky_number_test" target="11" />
+      <module name="Problems-Print_strings_in_the_reverse_order_main" target="11" />
+      <module name="Problems-Print_strings_in_the_reverse_order_test" target="11" />
+      <module name="Problems-Printing_strings_in_the_same_order_main" target="11" />
+      <module name="Problems-Printing_strings_in_the_same_order_test" target="11" />
+      <module name="Problems-Reading_integer_numbers_main" target="11" />
+      <module name="Problems-Reading_integer_numbers_test" target="11" />
+      <module name="Problems-The_largest_element_of_a_sequence_main" target="11" />
+      <module name="Problems-The_largest_element_of_a_sequence_test" target="11" />
+      <module name="Problems-The_sequence_main" target="11" />
+      <module name="Problems-The_sequence_test" target="11" />
+      <module name="Tic-Tac-Toe-task_main" target="11" />
+      <module name="Tic-Tac-Toe-task_test" target="11" />
+      <module name="util_main" target="11" />
+      <module name="util_test" target="11" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
