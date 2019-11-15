@@ -2,22 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3a7b418b-e37c-4dc8-8d1a-095c02387fa3" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../Coffee Machine/.idea/$CACHE_FILE$" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Coffee Machine/.idea/$PRODUCT_WORKSPACE_FILE$" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Coffee Machine/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Coffee Machine/.idea/.name" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Coffee Machine/.idea/Coffee_Machine.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Coffee Machine/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Coffee Machine/.idea/gradle.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Coffee Machine/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Coffee Machine/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Coffee Machine/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Coffee Machine/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Coffee Machine/gradlew" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Coffee Machine/gradlew.bat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/ulan/coffeeMachine.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/ulan/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/ulan/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/ulan/coffeeMachine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/ulan/coffeeMachine.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -119,6 +105,14 @@
       <option name="presentableId" value="Default" />
       <updated>1573554271518</updated>
     </task>
+    <task id="LOCAL-00001" summary="committed at 15.11.2019, after completing Stage 4/6 of the &quot;Coffee Machine&quot;">
+      <created>1573820699944</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1573820699944</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -134,5 +128,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="committed at 15.11.2019, after completing Stage 4/6 of the &quot;Coffee Machine&quot;" />
+    <option name="LAST_COMMIT_MESSAGE" value="committed at 15.11.2019, after completing Stage 4/6 of the &quot;Coffee Machine&quot;" />
   </component>
 </project>

@@ -1,5 +1,3 @@
-package com.ulan;
-
 import java.util.Scanner;
 
 public class coffeeMachine {
@@ -37,11 +35,11 @@ public class coffeeMachine {
         int variety = sc.nextInt();
         switch (variety) {
             case 1: if (calcIngredients(m, 1) > 0) {m[0] -= 250; m[1] -= 0; m[2] -= 16; m[3] -= 1; m[4] += 4;}
-                        else System.out.println("ableAmount = 0"); break; //espresso, needs 250 ml water, 16 g coffee beans. It costs $4.
+            else System.out.println("ableAmount = 0"); break; //espresso, needs 250 ml water, 16 g coffee beans. It costs $4.
             case 2: if (calcIngredients(m, 2) > 0) {m[0] -= 350; m[1] -= 75; m[2] -= 20; m[3] -= 1; m[4] += 7;}
-                        else System.out.println("ableAmount = 0"); break; //latte, needs 350 ml water, 75 ml milk, 20 g of coffee beans. $7
+            else System.out.println("ableAmount = 0"); break; //latte, needs 350 ml water, 75 ml milk, 20 g of coffee beans. $7
             case 3: if (calcIngredients(m, 3) > 0) {m[0] -= 200; m[1] -= 100; m[2] -= 12; m[3] -= 1; m[4] += 6;}
-                        else System.out.println("ableAmount = 0"); break; //cappuccino, needs 200 ml water, 100 ml milk, 12 g of coffee. $6
+            else System.out.println("ableAmount = 0"); break; //cappuccino, needs 200 ml water, 100 ml milk, 12 g of coffee. $6
         }
         System.out.println();
         printState(m);
