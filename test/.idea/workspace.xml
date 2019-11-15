@@ -8,6 +8,9 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="CoverageViewManager">
+    <option name="myElementSize" value="236" />
+  </component>
   <component name="FavoritesManager">
     <favorites_list name="Stage_3-5" />
   </component>
@@ -18,12 +21,16 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
   <component name="ProjectId" id="1SEe6TeJBBPsilErXjLONAkyd87" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+    <property name="settings.editor.selected.configurable" value="vcs.Git" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -37,26 +44,13 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.testTicTac">
-    <configuration name="CheckSudoku" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.ulan.CheckSudoku" />
+  <component name="RunManager" selected="Application.TheStarFigure">
+    <configuration name="JdbcOracleConnection" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="net.codejava.jdbc.JdbcOracleConnection" />
       <module name="Stage_3-5" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.ulan.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ConditionalChocolate" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.ulan.ConditionalChocolate" />
-      <module name="Stage_3-5" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.ulan.*" />
+          <option name="PATTERN" value="net.codejava.jdbc.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -90,6 +84,19 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="TheStarFigure" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.ulan.TheStarFigure" />
+      <module name="Stage_3-5" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.ulan.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="testTicTac" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.ulan.testTicTac" />
       <module name="Stage_3-5" />
@@ -104,19 +111,19 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.CheckSudoku" />
-      <item itemvalue="Application.ConditionalChocolate" />
       <item itemvalue="Application.LongestAscendingSequence" />
       <item itemvalue="Application.SumNeighbours" />
       <item itemvalue="Application.testTicTac" />
+      <item itemvalue="Application.JdbcOracleConnection" />
+      <item itemvalue="Application.TheStarFigure" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.TheStarFigure" />
         <item itemvalue="Application.testTicTac" />
+        <item itemvalue="Application.JdbcOracleConnection" />
         <item itemvalue="Application.SumNeighbours" />
         <item itemvalue="Application.LongestAscendingSequence" />
-        <item itemvalue="Application.CheckSudoku" />
-        <item itemvalue="Application.ConditionalChocolate" />
       </list>
     </recent_temporary>
   </component>
@@ -133,11 +140,27 @@
     </task>
     <servers />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="XDebuggerManager">
     <watches-manager>
       <configuration name="Application">
         <watch expression="3" language="JAVA" />
       </configuration>
     </watches-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/Stage_3_5$testTicTac.ic" NAME="testTicTac Coverage Results" MODIFIED="1572848396168" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.ulan.*</FILTER>
+    </SUITE>
   </component>
 </project>

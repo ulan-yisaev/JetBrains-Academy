@@ -2,13 +2,15 @@ package com.ulan;
 
 import java.util.Scanner;
 
-public class testTicTac {
+public class tictactoe_4_5 {
     public static void main(String[] args) {
 
         int n = 3;
         String message = "";
         char[][] m = readState(n);
         int[] colXOEmpty = printState(m);
+        System.out.print("Enter the coordinates: ");
+
 /*
         System.out.println("printState(m)) {x, o, empty}: " + Arrays.toString(colXOEmpty));
         System.out.println("compare Rows, Cols & Diagonals ([X, O]):");
@@ -19,7 +21,6 @@ public class testTicTac {
         int threeXinRow = compareRows(n, m)[0] + compareCols(n, m)[0] + compareDiagonals(n, m)[0];
         int threeOinRow = compareRows(n, m)[1] + compareCols(n, m)[1] + compareDiagonals(n, m)[1];
 //        System.out.println("threeXinRow = " + threeXinRow + " | threeOinRow = " + threeOinRow + " | emptyCells = " + colXOEmpty[2]);
-//        System.out.println("Math.abs(colXOEmpty[0] - colXOEmpty[1]) = " + Math.abs(colXOEmpty[0] - colXOEmpty[1]));
 
         if (threeXinRow > 0 || threeOinRow > 0 || Math.abs(colXOEmpty[0] - colXOEmpty[1]) >= 2) {
             if (threeXinRow == threeOinRow) {
@@ -34,8 +35,8 @@ public class testTicTac {
         } else if (threeXinRow == 0 && threeOinRow == 0 && colXOEmpty[2] == 0) {
             message = "Draw";
         }
-
-        System.out.println(message);
+        //commented out 13.11.2019
+        //System.out.println(message);
     }
 
     private static char[][] readState(int n) {
@@ -63,7 +64,6 @@ public class testTicTac {
         for (int i = 0; i < 3; i++) {
             System.out.print("| ");
             for (int j = 0; j < 3; j++) {
-                System.out.print(m[i][j] + " "); // + ":[");
 //                System.out.print(i + "," + j + "] ");
                 switch (m[i][j]) {
                     case 'X':
@@ -74,10 +74,12 @@ public class testTicTac {
                         break;
                     case ' ':
                     case '_':
+                        m[i][j] = ' ';
                         empty++;
                         break;
                     // no default really required here
                 }
+                System.out.print(m[i][j] + " "); // + ":[");
             }
             System.out.println("|");
         }
@@ -152,5 +154,4 @@ public class testTicTac {
         }
         return new int[]{x3, o3};
     }
-
 }

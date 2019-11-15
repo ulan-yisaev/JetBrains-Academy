@@ -1,0 +1,15 @@
+type: hyperskill
+title: Tic-Tac-Toe
+language: English
+summary: 'Everybody knows this game from childhood. This is the game, where the price
+  of a mistake is too high: it usually costs you the game. You can become a real master
+  of this game by mastering only one possible option, so it also teaches you that
+  simple is always better than complex. What’s the game? Yes, this is Tic-Tac-Toe,
+  also known as noughts and crosses or Xs and Os. It’s meant to be a paper game, but
+  we are programmers, so why not make a game by ourselves? Let’s get started!<br/><br/>Learn
+  more at <a href="https://hyperskill.org">https://hyperskill.org/projects/48</a>'
+programming_language: Java
+programming_language_version: 11
+content:
+- Tic-Tac-Toe
+mode: Study

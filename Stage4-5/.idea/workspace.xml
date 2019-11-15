@@ -1,41 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="707002a6-e313-4519-8225-478000265360" name="Default Changelist" comment="" />
+    <list default="true" id="3a7b418b-e37c-4dc8-8d1a-095c02387fa3" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExternalProjectsData">
-    <projectState path="$PROJECT_DIR$">
-      <ProjectState />
-    </projectState>
-  </component>
-  <component name="ExternalProjectsManager">
-    <system id="GRADLE">
-      <state>
-        <projects_view>
-          <tree_state>
-            <expand />
-            <select />
-          </tree_state>
-        </projects_view>
-      </state>
-    </system>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="ProjectId" id="1SyAPUcM9oJIJMhT35hcwGvnWyE" />
+  <component name="ProjectId" id="1TVnkLbvBhN6ExF0wJaIUpNfELX" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
-    <property name="project.structure.last.edited" value="Project" />
-    <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="Errors" />
-    <property name="show.inlinked.gradle.project.popup" value="false" />
+    <property name="restartRequiresConfirmation" value="false" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Confirmation" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -49,13 +36,23 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="tictactoe.Main" />
-      <module name="Tic-Tac-Toe-task_main" />
+  <component name="RunManager" selected="Application.Main">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="com.ulan.Main" />
+      <module name="Stage4-5" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="tictactoe_4_5" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.ulan.tictactoe_4_5" />
+      <module name="Stage4-5" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="tictactoe.*" />
+          <option name="PATTERN" value="com.ulan.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -63,9 +60,14 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Application.Main" />
+      <item itemvalue="Application.tictactoe_4_5" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
+        <item itemvalue="Application.tictactoe_4_5" />
       </list>
     </recent_temporary>
   </component>
@@ -74,11 +76,11 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="707002a6-e313-4519-8225-478000265360" name="Default Changelist" comment="" />
-      <created>1572525437210</created>
+      <changelist id="3a7b418b-e37c-4dc8-8d1a-095c02387fa3" name="Default Changelist" comment="" />
+      <created>1573554271518</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1572525437210</updated>
+      <updated>1573554271518</updated>
     </task>
     <servers />
   </component>
