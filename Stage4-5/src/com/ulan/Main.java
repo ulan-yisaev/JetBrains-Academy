@@ -11,8 +11,6 @@ class Main {
 
         double anotherPosInf = +1 / 0.0;          // it's +Infinity, not an exception
 
-        double posInfAgain = anotherPosInf + 100; // +Infinity again
         System.out.println( 0.0/0.0);
-
     }
 }
