@@ -2,6 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3a7b418b-e37c-4dc8-8d1a-095c02387fa3" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../Coffee Machine/.idea/$CACHE_FILE$" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Coffee Machine/.idea/$PRODUCT_WORKSPACE_FILE$" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Coffee Machine/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Coffee Machine/.idea/.name" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Coffee Machine/.idea/Coffee_Machine.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Coffee Machine/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Coffee Machine/.idea/gradle.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Coffee Machine/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Coffee Machine/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Coffee Machine/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Coffee Machine/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Coffee Machine/gradlew" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Coffee Machine/gradlew.bat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/ulan/coffeeMachine.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/ulan/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/ulan/Main.java" afterDir="false" />
     </list>
@@ -23,8 +37,11 @@
     <option name="ROOT_SYNC" value="DONT_SYNC" />
   </component>
   <component name="ProjectId" id="1TVnkLbvBhN6ExF0wJaIUpNfELX" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="vcs.Git" />
@@ -41,13 +58,26 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="Application.coffeeMachine">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true">
       <option name="MAIN_CLASS_NAME" value="com.ulan.Main" />
       <module name="Stage4-5" />
       <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
       <RunnerSettings RunnerId="Run" />
       <ConfigurationWrapper RunnerId="Run" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="coffeeMachine" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.ulan.coffeeMachine" />
+      <module name="Stage4-5" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.ulan.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -68,9 +98,11 @@
     <list>
       <item itemvalue="Application.Main" />
       <item itemvalue="Application.tictactoe_4_5" />
+      <item itemvalue="Application.coffeeMachine" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.coffeeMachine" />
         <item itemvalue="Application.Main" />
         <item itemvalue="Application.tictactoe_4_5" />
       </list>
@@ -99,5 +131,8 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
 </project>
