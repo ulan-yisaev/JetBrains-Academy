@@ -1,48 +1,65 @@
 import java.util.Scanner;
 
-public class coffeeMachine {
+public class CoffeeMachine {
 
     private static void printState(int[] m) {
+        System.out.println();
         System.out.println("The coffee machine has:");
         System.out.println(m[0] + " of water");
         System.out.println(m[1] + " of milk");
         System.out.println(m[2] + " of coffee beans");
         System.out.println(m[3] + " of disposable cups");
         System.out.println(m[4] + " of money");
+        System.out.println();
     }
 
-    private static int calcIngredients(int m[], int variety) {
-//        System.out.println("Write how many ml of water the coffee machine has:");
-        int ableAmount = 0;
-        int hasMlWater = m[0];
-//        System.out.println("Write how many ml of milk the coffee machine has:");
-        int hasMlMilk = m[1];
-//        System.out.println("Write how many grams of coffee beans the coffee machine has:");
-        int hasGramsBeans = m[2];
+    private static void calcPrintResources(int[] m, int water, int milk, int beans, int cups, int usd) {
+        String resourcesAvailability = "";
+        resourcesAvailability = checkIngredients(m, water, milk, beans, cups);
+        if (resourcesAvailability.equals("I have enough resources, making you a coffee!")) {
+            System.out.println(resourcesAvailability);
+            m[0] -= water;
+            m[1] -= milk;
+            m[2] -= beans;
+            m[3] -= cups;
+            m[4] += usd;
+        } else System.out.println(resourcesAvailability);
+//            case 3:  ableAmount = Math.min(Math.min(m[0] / water, m[1] / milk), Math.min(m[2] / beans, m[3] - cups));
+    }
 
-        switch (variety) {
-            case 1: ableAmount = Math.min(hasMlWater / 250, hasGramsBeans / 16 ); break;    //milk = 0
-            case 2: ableAmount = Math.min(Math.min(hasMlWater / 350, hasMlMilk / 75), hasGramsBeans / 20 ); break;
-            case 3: ableAmount = Math.min(Math.min(hasMlWater / 200, hasMlMilk / 100), hasGramsBeans / 12 ); break;
+    private static String checkIngredients(int[] m, int water, int milk, int beans, int cups) {
+        if (m[3] - cups < 0) {
+            return "Sorry, not enough disposable cups!";
+        } else if (m[0] - water < 0) {
+            return "Sorry, not enough water!";
+        } else if (m[1] - milk < 0) {
+            return "Sorry, not enough milk!";
+        } else if (m[2] - beans < 0) {
+            return "Sorry, not enough beans!";
         }
-//        System.out.println("ableAmount = " + ableAmount);
-        return ableAmount;
+        return "I have enough resources, making you a coffee!";
     }
 
     private static void buyCoffee(int[] m) {
         Scanner sc = new Scanner(System.in);
-        System.out.println("What do you want to buy? 1 - espresso, 2 - latte, 3 - cappuccino:");
-        int variety = sc.nextInt();
+        System.out.println();
+        System.out.println("What do you want to buy? 1 - espresso, 2 - latte, 3 - cappuccino, back - to main menu:");
+        String variety = sc.nextLine();
+        String resourcesAvailability = "";
         switch (variety) {
-            case 1: if (calcIngredients(m, 1) > 0) {m[0] -= 250; m[1] -= 0; m[2] -= 16; m[3] -= 1; m[4] += 4;}
-            else System.out.println("ableAmount = 0"); break; //espresso, needs 250 ml water, 16 g coffee beans. It costs $4.
-            case 2: if (calcIngredients(m, 2) > 0) {m[0] -= 350; m[1] -= 75; m[2] -= 20; m[3] -= 1; m[4] += 7;}
-            else System.out.println("ableAmount = 0"); break; //latte, needs 350 ml water, 75 ml milk, 20 g of coffee beans. $7
-            case 3: if (calcIngredients(m, 3) > 0) {m[0] -= 200; m[1] -= 100; m[2] -= 12; m[3] -= 1; m[4] += 6;}
-            else System.out.println("ableAmount = 0"); break; //cappuccino, needs 200 ml water, 100 ml milk, 12 g of coffee. $6
+            case "1":     //espresso, needs 250 ml water, 16 g coffee beans. It costs $4.
+                calcPrintResources(m, 250, 0, 16, 1, 4);
+                break;
+            case "2":     //latte, needs 350 ml water, 75 ml milk, 20 g of coffee beans. $7
+                calcPrintResources(m, 350, 75, 20, 1, 7);
+                break;
+            case "3":     //cappuccino, needs 200 ml water, 100 ml milk, 12 g of coffee. $6
+                calcPrintResources(m, 200, 100, 12, 1, 6);
+                break;
+            case "back":
+                return;
         }
         System.out.println();
-        printState(m);
     }
 
     private static void fillSupplies(int[] m) {
@@ -64,26 +81,43 @@ public class coffeeMachine {
         System.out.println("I gave you $" + m[4]);
         m[4] = 0;
         System.out.println();
-        printState(m);
+//        printState(m);
     }
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+        String action;
+        boolean on = true;
 
-        int[] m = {1200, 540, 120, 9, 550};
-        printState(m);
-        System.out.println();
-        System.out.println("Write action (buy, fill, take): ");
-        String action = sc.nextLine();
+        int[] m = {400, 540, 120, 9, 550};
 
-        switch (action) {
-            case "buy": buyCoffee(m); break;
-            case "fill": fillSupplies(m); break;
-            case "take": takeMoney(m); break;
+        while (on) {
+            System.out.println("Write action (buy, fill, take, remaining, exit): ");
+            action = sc.nextLine();
+
+            switch (action) {
+                case "buy":
+                    buyCoffee(m);
+                    break;
+                case "fill":
+                    fillSupplies(m);
+                    break;
+                case "take":
+                    takeMoney(m);
+                    break;
+                case "remaining":
+                    printState(m);
+                    break;
+                case "exit":
+                    on = false;
+                    break;
+                default:
+                    break;
+            }
         }
 //        System.out.println(Arrays.toString(m));
 
-//        int ableAmount = calcIngredients(m);
+//        int ableAmount = calcPrintResources(m);
 /*        System.out.println("Write how many cups of coffee you will need:");
         int n = sc.nextInt();
 
