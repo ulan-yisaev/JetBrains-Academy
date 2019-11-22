@@ -1,10 +1,8 @@
 package com.ulan;
 
-import java.time.DayOfWeek;
 import java.util.Arrays;
-import java.util.concurrent.TimeUnit;
 
-public class test {
+public class Enum_test {
 
     enum DangerLevel {
         HIGH (3),
@@ -22,18 +20,40 @@ public class test {
         }
     }
 
+    public enum StateOfMachine {
+        CHOOSACT ("choosing an action"),
+        CHOOSCOF ("choosing a variant of coffee"),
+        FILL ("filling up the ingredients");
+
+        private String title;
+
+        StateOfMachine(String title) {
+            this.title = title;
+        }
+
+        public String getTitle() {
+            return title;
+        }
+    }
+
     public static void main(String[] args) throws InterruptedException {
         DangerLevel high = DangerLevel.HIGH;
         DangerLevel medium = DangerLevel.MEDIUM;
 
-        System.out.println(high.getLevel() > medium.getLevel()); // true
+        /* System.out.println(high.getLevel() > medium.getLevel()); // true
         System.out.println(high.getLevel());
-        System.out.println(Arrays.toString(DangerLevel.values()));
-
+        System.out.println(Arrays.toString(DangerLevel.values())); */
+        StateOfMachine currState = StateOfMachine.CHOOSACT;
+        System.out.println(currState);
+        System.out.println(currState.getTitle());
         //Iterating over Enum Values:
+        /*int ordIndex;
         for (DangerLevel dl : DangerLevel.values()) {
-            System.out.println(dl.ordinal());
-        }
+            System.out.print(dl.ordinal());
+            ordIndex = dl.ordinal();
+            System.out.println(" | Get Enum By Ordinal: " + DangerLevel.values()[ordIndex]);
+            System.out.println(dl.name());
+        } */
 
     }
 }

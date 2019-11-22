@@ -1,13 +1,10 @@
 package com.ulan;
 
-import java.util.Scanner;
-
 public class Main {
 
     public static void main(String[] args) {
 
         Account account = new Account("123456", 1000L, (new User("demo-user", "Alexander", "Schmidt")));
-
 //        process(account);
     }
 
