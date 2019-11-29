@@ -4,58 +4,42 @@ public class CoffeeMachine {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        String action = "";
         int[] m = {400, 540, 120, 9, 550};
+        boolean machineOn;
 
-//        CoffeeMachineSimulator coffeeMachine = new CoffeeMachineSimulator(m, stateOfMachine.MENU);
         CoffeeMachineSimulator coffeeMachine = new CoffeeMachineSimulator(m);
-        System.out.println("beginning state: " + coffeeMachine.stateOfMachine);
-        System.out.println("_1st_Write action (buy, fill, take, remaining, exit): ");
-
-        while (true) {
-            action = sc.nextLine();
-            coffeeMachine.takeInput(action);
-            System.out.println("current state in while loop: " + coffeeMachine.stateOfMachine + " | ");
-        }
+        do {
+            if (coffeeMachine.stateOfMachine.name().equals("MENU")) {
+                System.out.println("Write action (buy, fill, take, remaining, exit): ");
+            }
+            machineOn = coffeeMachine.takeInput(sc.nextLine());
+//        } while (machineOn);
+        } while (!coffeeMachine.stateOfMachine.name().equals("OFF"));
     }
 }
 
 class CoffeeMachineSimulator {
-    public int[] m;
-    StateOfMachine stateOfMachine = StateOfMachine.MENU;// = StateOfMachine.MENU;
+    private int[] m;
+    StateOfMachine stateOfMachine;
     private int i;
 
-    public CoffeeMachineSimulator(int[] m) {
+    CoffeeMachineSimulator(int[] m) {
         this.m = m;
+        stateOfMachine = StateOfMachine.MENU;
     }
 
     public enum StateOfMachine {
-        MENU("choosing an action"),
-        BUYCOFFEE("choosing a variant of coffee"),
-        FILL("filling up the ingredients"),
-        OFF("Offline");
-
-        private String title;
-
-        StateOfMachine(String title) {
-            this.title = title;
-        }
-
-        public String getTitle() {
-            return title;
-        }
+        MENU, BUYCOFFEE, FILL, OFF;
     }
 
-    public void takeInput(String action) {
+    boolean takeInput(String action) {
         switch (stateOfMachine) {
             case MENU:
-                System.out.println("Write action (buy, fill, take, remaining, exit): ");
                 switch (action) {
                     case "buy":
-                        System.out.println();
                         System.out.println("What do you want to buy? 1 - espresso, 2 - latte, 3 - cappuccino, back - to main menu:");
                         stateOfMachine = StateOfMachine.BUYCOFFEE;
-                        System.out.println("current state: " + stateOfMachine);
+//                        return;
                         break;
                     case "fill":
                         stateOfMachine = StateOfMachine.FILL;
@@ -67,20 +51,26 @@ class CoffeeMachineSimulator {
                     case "remaining":
                         printState(m);
                         break;
+//                        return;
                     case "exit":
                         stateOfMachine = StateOfMachine.OFF;
-                        System.out.println("after case stateOfMachine = StateOfMachine.OFF = " + stateOfMachine);
-                        break;
-                    default:
-                        System.out.println("reached default in case MENU:"); break;
+                        return false;
                 }
-            case BUYCOFFEE: buyCoffee(m, action); break;
-            case FILL: fillSupplies(m, action, i); if (i == 3) i = 0; else i++; break;
+                break;  //ppz, zabyl etot break i poteryal huevu tuchu vremeni!!!
+            case BUYCOFFEE:
+                buyCoffee(m, action);
+                break;
+            case FILL:
+                fillSupplies(m, action, i);
+                if (i == 3) i = 0;
+                else i++;
+                break;
         }
+        System.out.println();
+        return true;
     }
 
-    private  void printState(int[] m) {
-        System.out.println();
+    private void printState(int[] m) {
         System.out.println("The coffee machine has:");
         System.out.println(m[0] + " of water");
         System.out.println(m[1] + " of milk");
@@ -89,7 +79,7 @@ class CoffeeMachineSimulator {
         System.out.println(m[4] + " of money");
     }
 
-    private  void calcPrintResources(int[] m, int water, int milk, int beans, int cups, int usd) {
+    private void calcPrintResources(int[] m, int water, int milk, int beans, int cups, int usd) {
         String resourcesAvailability = "";
         resourcesAvailability = checkIngredients(m, water, milk, beans, cups);
         if (resourcesAvailability.equals("I have enough resources, making you a coffee!")) {
@@ -103,7 +93,7 @@ class CoffeeMachineSimulator {
 //            case 3:  ableAmount = Math.min(Math.min(m[0] / water, m[1] / milk), Math.min(m[2] / beans, m[3] - cups));
     }
 
-    private  String checkIngredients(int[] m, int water, int milk, int beans, int cups) {
+    private String checkIngredients(int[] m, int water, int milk, int beans, int cups) {
         if (m[3] - cups < 0) {
             return "Sorry, not enough disposable cups!";
         } else if (m[0] - water < 0) {
@@ -116,7 +106,7 @@ class CoffeeMachineSimulator {
         return "I have enough resources, making you a coffee!";
     }
 
-    private void buyCoffee(int[] m, String action) /*throws IllegalStateException*/ {
+    private void buyCoffee(int[] m, String action) throws IllegalStateException {
 
         switch (action) {
             case "1":     //espresso, needs 250 ml water, 16 g coffee beans. It costs $4.
@@ -131,26 +121,37 @@ class CoffeeMachineSimulator {
             case "back":
                 stateOfMachine = StateOfMachine.MENU;
                 return;
-            /*default:
-                throw new IllegalStateException("Unexpected value: " + action);*/
+            default:
+                throw new IllegalStateException(action + " <- Unexpected value in the buyCoffee method");
         }
         stateOfMachine = StateOfMachine.MENU;
-        System.out.println();
     }
 
-    private  void fillSupplies(int[] m, String action, int i) {
+    private void fillSupplies(int[] m, String action, int i) {
         switch (i) {
-            case 0: m[0] += Integer.parseInt(action); System.out.println("Write how many ml of milk do you want to add:"); break;
-            case 1: m[1] += Integer.parseInt(action); System.out.println("Write how many grams of coffee beans do you want to add:"); break;
-            case 2: m[2] += Integer.parseInt(action); System.out.println("Write how many disposable cups of coffee do you want to add:"); break;
-            case 3: m[3] += Integer.parseInt(action); printState(m); stateOfMachine = StateOfMachine.MENU; break;
+            case 0:
+                m[0] += Integer.parseInt(action);
+                System.out.println("Write how many ml of milk do you want to add:");
+                break;
+            case 1:
+                m[1] += Integer.parseInt(action);
+                System.out.println("Write how many grams of coffee beans do you want to add:");
+                break;
+            case 2:
+                m[2] += Integer.parseInt(action);
+                System.out.println("Write how many disposable cups of coffee do you want to add:");
+                break;
+            case 3:
+                m[3] += Integer.parseInt(action);
+                printState(m);
+                stateOfMachine = StateOfMachine.MENU;
+                break;
         }
     }
 
-    private  void takeMoney(int[] m) {
+    private void takeMoney(int[] m) {
         System.out.println("I gave you $" + m[4]);
         m[4] = 0;
-        System.out.println();
     }
 }
 
