@@ -44,7 +44,6 @@ public class Main {
                 System.out.println((char)((int)c + 25 - ((int)c % 97) * 2));
             } else System.out.println(c);
         }*/
-
     }
 }
 
