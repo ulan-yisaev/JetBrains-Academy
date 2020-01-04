@@ -18,23 +18,23 @@ public class Main {
                 switch (arg) {
                 case "-mode":
                     whatToDo = args[i + 1];
-                    System.out.println("whatToDo = " + whatToDo);
+                    //System.out.println("whatToDo = " + whatToDo);
                     break;
                 case "-key":
                     shift = Integer.parseInt(args[i + 1]);
-                    System.out.println("shift = " + shift);
+                   // System.out.println("shift = " + shift);
                     break;
                 case "-data":
                     dataTxt = args[i + 1];
-                    System.out.println("dataTxt = " + dataTxt);
+                   // System.out.println("dataTxt = " + dataTxt);
                     break;
                 case "-in":
                     pathToFileIn = args[i + 1];
-                    System.out.println("pathToFileIn = " + pathToFileIn);
+                   // System.out.println("pathToFileIn = " + pathToFileIn);
                     break;
                 case "-out":
                     pathToFileOut = args[i + 1];
-                    System.out.println("pathToFileOut = " + pathToFileOut);
+                    //System.out.println("pathToFileOut = " + pathToFileOut);
                     break;
                 default:
                     //System.out.println("(Unknown operation:) current switch case is: " + arg);
