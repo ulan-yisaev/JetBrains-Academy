@@ -1,0 +1,83 @@
+type: edu
+custom_name: stage3
+files:
+- name: test/EncryptDecryptTest.java
+  visible: false
+  text: |
+    import encryptdecrypt.Main;
+    import org.hyperskill.hstest.v6.stage.BaseStageTest;
+    import org.hyperskill.hstest.v6.testcase.PredefinedIOTestCase;
+
+    import java.util.List;
+
+    public class EncryptDecryptTest extends BaseStageTest {
+        public EncryptDecryptTest() throws Exception {
+            super(Main.class);
+        }
+
+        @Override
+        public List<PredefinedIOTestCase> generate() {
+            return List.of(
+                new PredefinedIOTestCase(
+                    "enc\n" +
+                        "Welcome to hyperskill!\n" +
+                        "5",
+                    "\\jqhtrj%yt%m~ujwxpnqq&"),
+                new PredefinedIOTestCase(
+                    "enc\n" +
+                        "Hello\n" +
+                        "0",
+                    "Hello"),
+                new PredefinedIOTestCase(
+                    "enc\n" +
+                        "012345678\n" +
+                        "1",
+                    "123456789"),
+                new PredefinedIOTestCase(
+                    "dec\n" +
+                        "\\jqhtrj%yt%m~ujwxpnqq&\n" +
+                        "5",
+                    "Welcome to hyperskill!"),
+                new PredefinedIOTestCase(
+                    "dec\n" +
+                        "Hello\n" +
+                        "0",
+                    "Hello"),
+                new PredefinedIOTestCase(
+                    "dec\n" +
+                        "222233334444\n" +
+                        "1",
+                    "111122223333")
+            );
+        }
+    }
+  learner_created: false
+- name: src/encryptdecrypt/Main.java
+  visible: true
+  text: |
+    package encryptdecrypt;
+
+    import java.util.Scanner;
+
+    public class Main {
+        public static void main(String[] args) {
+            Scanner sc = new Scanner(System.in);
+
+            String toEncrypt = sc.nextLine();
+            int i = sc.nextInt();
+            int shift = i % 25;
+
+            for (char c : toEncrypt.toCharArray()) {
+                if (c >= 'a' && c <= 'z') {
+                    if ((int) c + shift < 122)
+                        System.out.print((char) ((int) c + shift));
+                    else
+                        System.out.print((char) (96 + shift - (122 - (int) c)));
+                } else System.out.print(c);
+            }
+        }
+    }
+  learner_created: false
+feedback_link: https://hyperskill.org/projects/46/stages/247/implement
+status: Unchecked
+record: 4

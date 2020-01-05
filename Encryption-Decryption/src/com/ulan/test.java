@@ -13,6 +13,7 @@ public class test {
     }
 
     public static void main(String[] args) {
+        System.out.println(Calculator1.class.getName());
         Scanner sc = new Scanner(System.in);
 
         String url = sc.nextLine();

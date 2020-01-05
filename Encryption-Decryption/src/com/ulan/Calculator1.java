@@ -1,7 +1,11 @@
 package com.ulan;
 
+import java.util.Date;
+
 public class Calculator1 {
     public static void main(String[] args) {
+        Date now = new Date();
+        System.out.println(now);
         int c = 0;
         String operator = args[0];
         int a = Integer.parseInt(args[1]);
@@ -22,6 +26,14 @@ public class Calculator1 {
                 return;
         }
         System.out.println(c);
+
+        int[] nnn = {1, 2, 3, 4, 5};
+        int r = callBinarySearch(nnn, 2);
+        System.out.println(r);
+    }
+
+    public static int callBinarySearch(int[] nums, int key) {
+        return java.util.Arrays.binarySearch(nums, key);
     }
 }
 

@@ -2,6 +2,7 @@ package com.ulan;
 
 public class tmp {
     public static void main(String[] args) {
+        System.out.println(tmp.class.getName());
         String operator = args[0];
         int[] arr = new int[args.length-1];
 
