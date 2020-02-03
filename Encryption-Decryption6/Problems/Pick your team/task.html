@@ -1,0 +1,23 @@
+<b>Pick your team</b> <a class="right" href="https://hyperskill.org/learn/step/3329">Open on Hyperskill</a><br/><br/><html>
+ <head></head>
+ <body>
+  <p>Imagine that you're creating&nbsp;teams to organize events. You need a module for your program that will select the people&nbsp;for these teams.</p> 
+  <p>There are only two selection algorithms:</p> 
+  <ul> 
+   <li>take every k-th person;</li> 
+   <li>take the last k people.</li> 
+  </ul> 
+  <p>In both cases, k &gt; 1.</p> 
+  <p>You decided to use the <strong>strategy pattern</strong> in the module because new selection algorithms will be added in the future. Also, the pattern allows you to change the current algorithm at runtime.</p> 
+  <p>The basic structure of classes is provided below, but it doesn't really work properly.</p> 
+  <p>Your goal is to implement the following method:</p> 
+  <ul> 
+   <li><code>setAlgorithm</code> and <code>selectPersons</code> methods of the class <code>SelectionContext</code>;</li> 
+   <li><code>select</code> of the class <code>TakePersonsWithStepAlgorithm</code> to take every k-th person <strong>starting with the index 0</strong> in the same order as in the input array (when k is 3, then it must take 0, 3, 6, ... persons);</li> 
+   <li><code>select</code> of the class <code>TakeLastPersonsAlgorithm</code> to take the last k persons in the same order as the input array.</li> 
+  </ul> 
+  <p>Perhaps, you should add some fields to the classes as well.</p> 
+  <p>Please&nbsp;do not change the class <code>Person</code> and the interface <code>PersonSelectionAlgorithm</code>, and do not rename existing methods.</p> 
+  <p><strong>HINT: </strong>tests 1-4 check <code>TakePersonsWithStepAlgorithm</code>, tests 5-8 check <code>TakeLastPersonsAlgorithm</code>. Do not forget to check your solution when the step is 1 or the input array contains only a single element.</p>
+ </body>
+</html><br><br><font color="gray">Memory limit: 256 Mb</font><br><font color="gray">Time limit: 5s</font><br><br><br/><a href="https://hyperskill.org/learn/step/3556">Show topic summary</a>
