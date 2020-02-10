@@ -1,5 +1,3 @@
-package com.ulan;
-
 public class Main {
     public static void main(String[] args) {
 

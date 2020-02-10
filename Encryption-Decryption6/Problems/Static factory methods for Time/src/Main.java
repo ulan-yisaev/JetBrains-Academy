@@ -1,6 +1,7 @@
 import java.util.Scanner;
 
 //Design patterns → Encapsulating object creation → Static factory methods for Time
+//Solution from hs:
 class Time {
 
     int hour;

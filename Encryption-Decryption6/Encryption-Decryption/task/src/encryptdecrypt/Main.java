@@ -1,157 +1,93 @@
 package encryptdecrypt;
-/*Work on project. Stage 5/6: X-files
-Project: Encryption-Decryption*/
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Scanner;
-import java.io.*;
-
 public class Main {
+
+    //функция считывания данных из файла
+    public static String readFile (String filePath){
+        File file = new File (filePath);
+        StringBuilder data = null;
+        data = new StringBuilder();
+        try (Scanner in = new Scanner(file)){
+            while (in.hasNext()){
+                data.append(in.nextLine());
+            }
+        }catch (FileNotFoundException e){
+            e.printStackTrace();
+        }
+//        System.out.println(data);
+        return data.toString();
+    }
+
+    //функция записи в файл
+    public static void writeFile (String filePath, String data){
+        File file = new File(filePath);
+        try (FileWriter writer = new FileWriter(file)){
+            writer.write(data);
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
     public static void main(String[] args) {
+        String alg = "shift";
+        String mode ="enc";
+        int key = 0; // ключ для шифровки / дешифровки
+        String data = ""; // строка которую де/шифруем
+        int  _dataMode = 1; // если есть арг-ты -data и -in, то предпочтение -data; 0 -чтение аргумента, 1 - файла
+        int out = 0; // если нет аргумента -out: 0 - вывод в консоль ; 1 - в файл
+        String inFilePath = "";
+        String outFilePath = "";
 
-        int shift = 0;
-        int i = 0;
-        String whatToDo = "enc";
-        String dataTxt = "";
-        String pathToFileIn = "";
-        String pathToFileOut = "";
-
-        for (String arg : args) {
-            try {
-                switch (arg) {
-                    case "-mode":
-                        whatToDo = args[i + 1];
-                        //System.out.println("whatToDo = " + whatToDo);
-                        break;
-                    case "-key":
-                        shift = Integer.parseInt(args[i + 1]);
-                        // System.out.println("shift = " + shift);
-                        break;
-                    case "-data":
-                        dataTxt = args[i + 1];
-                        // System.out.println("dataTxt = " + dataTxt);
-                        break;
-                    case "-in":
-                        pathToFileIn = args[i + 1];
-                        // System.out.println("pathToFileIn = " + pathToFileIn);
-                        break;
-                    case "-out":
-                        pathToFileOut = args[i + 1];
-                        //System.out.println("pathToFileOut = " + pathToFileOut);
-                        break;
-                    default:
-                        //System.out.println("(Unknown operation:) current switch case is: " + arg);
-                        break;
+        //  int count = 0; // если 0, то не верный ввод команды. вывод сообщения об ошибке
+        if (args.length == 0){
+            System.out.println("Error no input data");
+        }else {
+            //поиск ключа
+            for (int i = 0; i < args.length; i++) {
+                if(args[i].equals("-alg")) {
+                    alg = args[i + 1];
                 }
-                i++;
-            } catch (Exception e) {
-                System.out.println("Error: " + e);
-                e.printStackTrace();
-            }
-        }
-
-        if (!dataTxt.isEmpty()) {
-            EncryptDecrypt encdec = new EncryptDecrypt(dataTxt, shift, whatToDo, pathToFileOut);
-            encdec.chooseMode();
-        } else if (!pathToFileIn.isEmpty()) {
-            EncryptDecrypt encdec = new EncryptDecrypt(dataTxt, shift, whatToDo, pathToFileIn, pathToFileOut);
-            encdec.chooseMode();
-        } else {
-            EncryptDecrypt encdec = new EncryptDecrypt(dataTxt, shift, whatToDo, pathToFileOut);
-            encdec.chooseMode();
-        }
-    }
-}
-
-class EncryptDecrypt {
-    String toProcess;
-    int shift;
-    String whatToDo;
-    String pathToFileIn = "";
-    String pathToFileOut = "";
-
-    EncryptDecrypt(String toProcess, int shift, String whatToDo, String pathToFileOut) {
-        //System.out.println("+++ 1st constructor");
-        this.toProcess = toProcess;
-        this.shift = shift;
-        this.whatToDo = whatToDo;
-        this.pathToFileOut = pathToFileOut;
-    }
-
-    EncryptDecrypt(String toProcess, int shift, String whatToDo, String pathToFileIn, String pathToFileOut) {
-        //System.out.println("+++ 2nd constructor");
-        this.toProcess = toProcess;
-        this.shift = shift;
-        this.whatToDo = whatToDo;
-        this.pathToFileIn = pathToFileIn;
-        this.pathToFileOut = pathToFileOut;
-    }
-
-    void chooseMode() {
-        if (whatToDo.contains("dec")) {
-            if (pathToFileIn.isEmpty()) {
-                getDecryption(toProcess);
-            } else {
-                File file = new File(pathToFileIn);
-                try (Scanner scanner = new Scanner(file)) {
-                    while (scanner.hasNext()) {
-                        getDecryption(scanner.nextLine());
-                    }
-                } catch (FileNotFoundException e) {
-                    System.out.println("Error: " + e);
-                    e.printStackTrace();
+                if (args[i].equals("-key")) {
+                    key = Integer.parseInt(args[i + 1]);
                 }
-            }
-        }     else {
-            if (pathToFileIn.isEmpty()) {
-                getEncryption(toProcess);
-            } else {
-                File file = new File(pathToFileIn);
-                try (Scanner scanner = new Scanner(file)) {
-                    while (scanner.hasNext()) {
-                        getEncryption(scanner.nextLine());
-                    }
-                } catch (FileNotFoundException e) {
-                    System.out.println("Error: " + e);
-                    e.printStackTrace();
+                if (args[i].equals("-mode")) {
+                    mode = args[i + 1];
+                }
+                if (args[i].equals("-data")) {
+                    data = data + args[i + 1];
+                    _dataMode = 0; //есть аргумент -data, значит игнорируем чтение из файла
+                }
+                if (args[i].equals("-in")) {
+                    inFilePath += args[i + 1];
+                }
+                if (args[i].equals("-out")) {
+                    outFilePath += args[i + 1];
+                    out = 1; //вывод в файл
                 }
             }
         }
-    }
 
-    void getEncryption(String toProcess) {
-        if (pathToFileOut.isEmpty()) {
-            for (char c : toProcess.toCharArray()) {
-                System.out.print((char) (shift + (int) c));
-            }
-        }     else {
-            try (FileWriter fileWriter = new FileWriter(pathToFileOut, true); //Set true for append mode
-                 PrintWriter printWriter = new PrintWriter(fileWriter)) {
-                for (char c : toProcess.toCharArray()) {
-                    printWriter.print((char) (shift + (int) c));
-                }
-                printWriter.println();
-            } catch (IOException e) {
-                System.out.println("Error: " + e);
-                e.printStackTrace();
-            }
+        if (_dataMode == 1) {
+            data = readFile(inFilePath);
         }
-    }
 
-    void getDecryption(String toProcess) {
-        if (pathToFileOut.isEmpty()) {
-            for (char c : toProcess.toCharArray()) {
-                System.out.print((char) ((int) c - shift));
-            }
-        }   else {
-            try (FileWriter fileWriter = new FileWriter(pathToFileOut, true); //Set true for append mode
-                 PrintWriter printWriter = new PrintWriter(fileWriter)) {
-                for (char c : toProcess.toCharArray()) {
-                    printWriter.print((char) ((int) c - shift));
-                }
-                printWriter.println();
-            } catch (Exception e) {
-                System.out.println("Error: " + e);
-                e.printStackTrace();
-            }
+        AlgorithmFactory algorithmFactory = new AlgorithmFactory();
+        Algorithm algorithm = algorithmFactory.createAlgorithm(alg);
+
+        switch (mode){
+            case "enc" : data = algorithm.getEncryption(data, key); break;
+            case "dec" : data = algorithm.getDecryption(data, key); break;
+        }
+
+        //вывод результата программы в консоль или в файл
+        switch (out){
+            case 0 : System.out.println(data); break;
+            case 1 : writeFile(outFilePath, data); break;
         }
     }
 }
