@@ -1,28 +1,37 @@
-package engine.entity;
+package engine.dto;
 
-import javax.persistence.*;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
-@Entity
-public class Quiz {
+public class QuizDto {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private long id;
 
+    @NotBlank(message = "Title is mandatory")
     private String title;
 
+    @NotBlank(message = "Text is mandatory")
     private String text;
 
-    @ElementCollection
+    @NotEmpty
+    @NotNull
+    @Size(min = 2, message = "an array of strings should contain at least 2 items")
     private List<String> options;
 
-    @ElementCollection  // means that the collection is not a collection of entities, but a collection of simple types (Strings, etc.)
-// It also means that the elements are completely owned by the containing entities: they're modified when the entity is modified, deleted when the entity is deleted, etc. They can't have their own lifecycle.
+    //https://medium.com/@bhanuchaddha/using-jsonignore-or-jsonproperty-to-hide-sensitive-data-in-json-response-ad12b1aacbf3
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Set<Integer> answer;
+
+    public QuizDto() {
+    }
 
     public long getId() {
         return id;
@@ -79,16 +88,5 @@ all variants with null i fixed in: */
 
     public void setOptions(List<String> options) {
         this.options = options;
-    }
-
-    @Override
-    public String toString() {
-        return "Quiz{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", text='" + text + '\'' +
-                ", options=" + options +
-                ", answer=" + answer +
-                '}';
     }
 }
