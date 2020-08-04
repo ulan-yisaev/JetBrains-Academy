@@ -62,6 +62,9 @@ files:
         }
     }
   learner_created: false
+- name: src/encryptdecrypt/Example.java
+  visible: true
+  learner_created: true
 feedback_link: https://hyperskill.org/projects/46/stages/245/implement
 status: Failed
 record: 2
