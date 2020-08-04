@@ -6,6 +6,12 @@ public class Feedback {
 
     private String feedback;
 
+    public Feedback(boolean success) {
+        this.success = success;
+        if (success) this.feedback = "Congratulations, you're right!";
+        else this.feedback = "Wrong answer! Please, try again.";
+    }
+
     public boolean isSuccess() {
         return success;
     }

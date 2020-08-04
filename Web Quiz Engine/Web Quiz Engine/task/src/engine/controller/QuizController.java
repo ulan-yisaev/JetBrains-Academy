@@ -3,7 +3,6 @@ package engine.controller;
 import engine.dto.QuizDto;
 import engine.entity.Answer;
 import engine.entity.Feedback;
-import engine.entity.Quiz;
 import engine.exception.QuizNotFoundException;
 import engine.service.QuizService;
 import org.springframework.web.bind.annotation.*;
@@ -51,16 +50,10 @@ public class QuizController {
     @PostMapping("/api/quizzes/{id}/solve")
     private Feedback solveQuiz(@PathVariable Long id, @RequestBody Answer answer) {
 
-        Feedback feedback = new Feedback();
-
         if (quizService.getById(id).getAnswer().equals(answer.getAnswer())) {
-            feedback.setSuccess(true);
-            feedback.setFeedback("Congratulations, you're right!");
+            return new Feedback(true);
         } else {
-            feedback.setSuccess(false);
-            feedback.setFeedback("Wrong answer! Please, try again.");
+            return new Feedback(false);
         }
-
-        return feedback;
     }
 }
