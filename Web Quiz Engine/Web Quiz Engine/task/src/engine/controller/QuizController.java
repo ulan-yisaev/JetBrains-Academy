@@ -5,9 +5,11 @@ import engine.entity.Answer;
 import engine.entity.Feedback;
 import engine.exception.QuizNotFoundException;
 import engine.service.QuizService;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.security.Principal;
 import java.util.List;
 
 @RestController
@@ -18,8 +20,8 @@ public class QuizController {
 
     public QuizController(QuizService quizService) {this.quizService = quizService;}
 
-    //    int id = 0;
-    /*Map<Integer, Quiz> quizzes = new HashMap<>();
+    /*    int id = 0;
+    Map<Integer, Quiz> quizzes = new HashMap<>();
     public QuizController() {
         quizzes.put(id, new Quiz(id++, "Coffee drinks", "Select only coffee drinks.",
                 new ArrayList<>(List.of("Americano", "Tea", "Cappuccino", "Sprite")),
@@ -41,12 +43,10 @@ public class QuizController {
     }
 
     @PostMapping("/api/quizzes")
-    private QuizDto createQuiz(@Valid @RequestBody QuizDto quizDto) {
-        return quizService.save(quizDto);
+    private QuizDto createQuiz(@Valid @RequestBody QuizDto quizDto, Principal principal) {
+        return quizService.save(quizDto, principal.getName());
     }
 
-    // removed @RequestBody due to
-// {"timestamp":"2020-03-03T10:30:44.119+0000","status":415,"error":"Unsupported Media Type","message":"Content type 'application/x-www-form-urlencoded;charset=UTF-8' not supported","path":"/api/quiz"}
     @PostMapping("/api/quizzes/{id}/solve")
     private Feedback solveQuiz(@PathVariable Long id, @RequestBody Answer answer) {
 
@@ -56,4 +56,12 @@ public class QuizController {
             return new Feedback(false);
         }
     }
+
+    @DeleteMapping("/api/quizzes/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)  //Wrong answer in test #153 :: DELETE /api/quizzes/3 should respond with status code 204, responded: 200
+    private void deleteQuiz(@PathVariable Long id, Principal principal) {
+        quizService.delete(id, principal.getName());
+    }
 }
+
+//Principal: refers to the authenticated user object provided by Spring Security

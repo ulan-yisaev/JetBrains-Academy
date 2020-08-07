@@ -13,6 +13,10 @@ public class Quiz {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private long id;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
     private String title;
 
     private String text;
@@ -79,6 +83,14 @@ all variants with null i fixed in: */
 
     public void setOptions(List<String> options) {
         this.options = options;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     @Override

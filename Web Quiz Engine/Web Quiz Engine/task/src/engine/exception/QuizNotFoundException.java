@@ -1,6 +1,5 @@
 package engine.exception;
 
-import engine.entity.Quiz;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 

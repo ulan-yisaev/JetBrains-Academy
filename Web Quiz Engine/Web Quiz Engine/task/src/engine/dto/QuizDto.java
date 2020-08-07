@@ -30,9 +30,6 @@ public class QuizDto {
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Set<Integer> answer;
 
-    public QuizDto() {
-    }
-
     public long getId() {
         return id;
     }
