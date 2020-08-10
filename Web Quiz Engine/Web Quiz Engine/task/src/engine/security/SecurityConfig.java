@@ -27,12 +27,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();  //Cross-Site Request Forgery [Подделка межсайтового запроса]
-//        http.headers().frameOptions().disable();    //Since the H2 database console runs inside a frame, you need to enable this in in Spring Security.
+        http.headers().frameOptions().disable();    //Since the H2 database console runs inside a frame, you need to enable this in in Spring Security.
 
         http.authorizeRequests()    //First, make a call to authorizeRequests(), as we need access to a “registry” object, which stores the web routes that are allowed for each role. Then “antMatchers” are used to identify the mapping.
                 .antMatchers(HttpMethod.POST, "/actuator/shutdown").permitAll()
                 .antMatchers("/api/register").permitAll()
-//                .antMatchers("/h2-console/**").permitAll()
+                .antMatchers("/h2-console/**").permitAll()
                 .antMatchers("/api/quizzes", "/api/quizzes/**").authenticated()
                 .and()
                 .httpBasic();

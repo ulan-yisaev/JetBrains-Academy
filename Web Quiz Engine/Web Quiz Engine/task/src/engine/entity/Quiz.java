@@ -1,9 +1,7 @@
 package engine.entity;
 
 import javax.persistence.*;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -24,9 +22,13 @@ public class Quiz {
     @ElementCollection
     private List<String> options;
 
-    @ElementCollection  // means that the collection is not a collection of entities, but a collection of simple types (Strings, etc.)
+    @ElementCollection
+    // means that the collection is not a collection of entities, but a collection of simple types (Strings, etc.)
 // It also means that the elements are completely owned by the containing entities: they're modified when the entity is modified, deleted when the entity is deleted, etc. They can't have their own lifecycle.
     private Set<Integer> answer;
+
+    @OneToMany(mappedBy = "quiz", cascade = CascadeType.ALL)
+    private List<Completion> completions;
 
     public long getId() {
         return id;
@@ -49,11 +51,11 @@ null: [] - true
 [] : [] - true
 all variants with null i fixed in: */
     public Set<Integer> getAnswer() {
-        Set<Integer> x = null;
-        if (Objects.equals(x, answer)) {
-            Set<Integer> emptySet = new HashSet<>();
-            return emptySet;
-        }
+//        Set<Integer> x = null;
+//        if (Objects.equals(x, answer)) {
+//            Set<Integer> emptySet = new HashSet<>();
+//            return emptySet;
+//        }
         return answer;
     }
 
@@ -91,6 +93,14 @@ all variants with null i fixed in: */
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public List<Completion> getCompletions() {
+        return completions;
+    }
+
+    public void setCompletions(List<Completion> completions) {
+        this.completions = completions;
     }
 
     @Override

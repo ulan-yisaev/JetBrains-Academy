@@ -10,7 +10,7 @@ public class User {
     @GeneratedValue
     private long id;
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false, unique = true, length = 200)
     private String email;
 
     private String password;
