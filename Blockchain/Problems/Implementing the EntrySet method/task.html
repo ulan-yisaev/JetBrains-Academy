@@ -1,0 +1,18 @@
+<b>Implementing the EntrySet method</b> <a class=right href="https://hyperskill.org/learn/step/7147">Open on JetBrains Academy</a>
+<br><br>
+<html>
+ <head></head>
+ <body>
+  <p>In Java, the standard <em>Hashtable</em> class has a method called <a target="_blank" href="https://docs.oracle.com/javase/8/docs/api/java/util/Hashtable.html#entrySet--" rel="noopener noreferrer nofollow">entrySet</a> that allows users to iterate over the entries of a table. Your task here is to implement a simplified version of the method for the described hash table.</p> 
+  <p><strong>Input: </strong>the first line contains an integer $n$, which is the number of insert queries. Each of the next $n$ lines contains two records separated by a space: the first represents the integer id, and the second corresponds to the string name.</p> 
+  <p><strong>Output: </strong>for each unique id, print all names associated with the id. All id's can be printed in arbitrary order, though names should be printed in the same order they were inserted into the table.</p> 
+  <p><button class="btn-sm btn-outline-secondary" onclick="getElementById('hint-854').style.display='inline'"> Hint </button> </p>
+  <div id="hint-854" style="display:none;">
+   Keep in mind that the described hash table has generic values. Thus, it may contain not only simple types as 
+   <code class="java">String</code> or 
+   <code class="java">Integer</code> but also more complex ones, like an array of a list of strings.
+  </div>
+  <p></p>
+ </body>
+</html><br><b>Sample Input:</b><br><pre><code class="language-no-highlight">5<br>513 Alice<br>401 Bob<br>513 Mike<br>401 Kate<br>513 John</code></pre><br><b>Sample Output:</b><br><pre><code class="language-no-highlight">513: Alice Mike John<br>401: Bob Kate</code></pre><br><br><br><font color="gray">Memory limit: 256 MB</font><br><font color="gray">Time limit: 8 seconds</font><br><br>
+<a href="https://hyperskill.org/learn/step/6945">Show topic summary</a>
