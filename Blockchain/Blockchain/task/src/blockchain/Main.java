@@ -1,29 +1,38 @@
 package blockchain;
 
+import blockchain.block.Blockchain;
+
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
 
-        Blockchain blockchain = new Blockchain();
+        Scanner scanner = new Scanner(System.in);
 
-        //task description: The chain starts with a block whose id = 1
-        for (int i = 1; i <= 10; i++) {
-            blockchain.generate(i, "Block #" + i);
-        }
+        System.out.print("Enter how many zeros the hash must start with: ");
 
-        blockchain.outputChain(5);
+        int zerosCnt = scanner.nextInt();
+        System.out.println();
 
-        /*for (int i = 0; i < 5; i++) {
-            System.out.println("Block:"
-                    + "\nId: " + blockchain.get(i).getId()
-//                    + "\nData: " + blockchain.get(i).getData()
-//                    + "\nNonce: " + blockchain.get(i).getNonce()
-                    + "\nTimestamp: " + blockchain.get(i).getTimestamp()
-                    + "\nHash of the previous block:\n" + blockchain.get(i).getPrevHash()
-                    + "\nHash of the block:\n" + blockchain.get(i).getHash() + "\n"
-            );
+//At the start of the program, you should check if a blockchain exists on the hard drive, load it, check if it is valid, and then continue to create blocks
+
+        Blockchain blockchain = Blockchain.initBlockchain();
+
+        /*if (!blockchain.isChainValid(zerosCnt)) {
+            return;
         }*/
 
-//        System.out.println(blockchain.isChainValid());
+        int lastBlockId = blockchain.getLastBlockId();
+//        System.out.println("blockchain.getLastBlockId(): " + lastBlockId + "\n");
+
+        for (int i = lastBlockId + 1; i <= lastBlockId + 5; i++) {
+            blockchain.generate(i, "Block #" + i, zerosCnt);
+        }
+
+        //blockchain.outputChain(0, 5);
+
+        //print last 5 blocks to avoid error in test #2:
+        blockchain.outputChain(blockchain.getLastBlockId() - 5, 5);
     }
 }
 

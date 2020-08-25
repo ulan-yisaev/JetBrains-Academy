@@ -1,25 +1,42 @@
-package blockchain;
+package blockchain.block;
 
+import blockchain.util.StringUtil;
+
+import java.io.Serializable;
 import java.util.Date;
+import java.util.Random;
 
-public class Block {
-
+public class Block implements Serializable {
+    static final long serialVersionUID = 1L;
     private int id;
     private long timestamp;
     private int nonce;      //an arbitrary number used in cryptography
     private String data;
     private String hash;
     private String prevHash;
+    private long timeToCreateBlock;
+    int attempts;
 
 // We represent a block by a hash value. Generating the hash value of a block is called “mining” the block.
 // Mining a block is typically computationally expensive to do as it serves as the “proof of work”.
 
-    public Block(int id, String prevHash, String data) {
+    public Block(int id, String prevHash, String data, int zerosCnt) {
         this.id = id;
         this.prevHash = prevHash;
         this.data = data;
         this.timestamp = new Date().getTime();
-        this.hash = calculateHash();
+        this.hash = (zerosCnt == 0) ? calculateHash() : mineBlock(zerosCnt);
+    }
+
+    private String mineBlock(int zerosCnt) {
+        String nZeros = new String(new char[zerosCnt]).replace('\0', '0');
+        do {
+            nonce = new Random().nextInt(Integer.MAX_VALUE);
+            attempts++;
+            hash = calculateHash();
+        } while (!hash.substring(0, zerosCnt).equals(nZeros));
+        timeToCreateBlock = (new Date().getTime() - timestamp) / 1000;
+        return hash;
     }
 
     public String calculateHash() {
@@ -77,21 +94,46 @@ public class Block {
         this.prevHash = prevHash;
     }
 
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+
+    public long getTimeToCreateBlock() {
+        return timeToCreateBlock;
+    }
+
+    public void setTimeToCreateBlock(long timeToCreateBlock) {
+        this.timeToCreateBlock = timeToCreateBlock;
+    }
+
+    public int getAttempts() {
+        return attempts;
+    }
+
+    public void setAttempts(int attempts) {
+        this.attempts = attempts;
+    }
+
     @Override
     public String toString() {
         return String.format("Block:%n"
                         + "Id: %d%n"
-//                    + "\nData: " + blockchain.get(i).getData()
-//                    + "\nNonce: " + blockchain.get(i).getNonce()
                         + "Timestamp: %d%n"
+                        + "Magic number: %d%n"
                         + "Hash of the previous block:%n"
                         + "%s%n"
                         + "Hash of the block:%n"
-                        + "%s",
+                        + "%s%n"
+                        + "Block was generating for %d seconds"
+                ,
                 this.id,
                 this.timestamp,
+                this.nonce,
                 this.prevHash,
-                this.hash);
+                this.hash,
+                this.timeToCreateBlock
+//                , this.attempts
+        );
     }
 }
 

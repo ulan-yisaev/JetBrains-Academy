@@ -1,8 +1,8 @@
-package blockchain;
+package blockchain.util;
 
 import java.security.MessageDigest;
 
-class StringUtil {
+public class StringUtil {
     /* Applies Sha256 to a string and returns a hash.
     *  A hash function maps input data of arbitrary size to output data of fixed size. */
     public static String applySha256(String input){
