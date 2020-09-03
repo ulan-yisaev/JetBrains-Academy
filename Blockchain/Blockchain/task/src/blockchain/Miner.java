@@ -2,7 +2,7 @@ package blockchain;
 
 import blockchain.block.Block;
 import blockchain.block.Blockchain;
-import blockchain.util.BlockchainUtils;
+import blockchain.util.ChainUtils;
 
 import java.util.concurrent.Callable;
 
@@ -21,7 +21,7 @@ public class Miner implements Callable<Block> {
 
         int lastBlockId = blockchain.getLastBlockId().orElse(0);
 
-        return BlockchainUtils.generate(blockchain, lastBlockId + 1, Thread.currentThread().getName(), minerId);
+        return ChainUtils.generate(blockchain, lastBlockId + 1, Thread.currentThread().getName(), minerId);
     }
 
     /*@Override

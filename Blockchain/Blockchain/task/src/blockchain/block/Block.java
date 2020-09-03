@@ -18,8 +18,7 @@ public class Block implements Serializable {
     private int zerosCnt;
     private String zerosCntMessage;
 
-// We represent a block by a hash value. Generating the hash value of a block is called “mining” the block.
-// Mining a block is typically computationally expensive to do as it serves as the “proof of work”.
+    private int attempts;
 
     public Block(int id, String prevHash, String data, int minerId, int zerosCnt) {
         this.id = id;
@@ -30,14 +29,23 @@ public class Block implements Serializable {
         this.hash = /*(zerosCnt == 0) ? calculateHash() :*/ mineBlock();
         this.minerId = minerId;
     }
+    // We represent a block by a hash value. Generating the hash value of a block is called “mining” the block.
+// Mining a block is typically computationally expensive to do as it serves as the “proof of work”.
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
 
     private String mineBlock() {
 
         String nZeros = new String(new char[zerosCnt]).replace('\0', '0');
 
         do {
-            nonce = new Random().nextInt(10000);
+            nonce = new Random().nextInt(Integer.MAX_VALUE);
             hash = calculateHash();
+            attempts++;
+//            if (attempts % 1000000 == 0) System.out.printf("attempts# in the mineBlock(%s): %d | zerosCnt: %d | nZeros: %s | | hash: %s %n", Thread.currentThread().getName(), attempts, zerosCnt, nZeros, hash);
+            if (Thread.currentThread().isInterrupted()) break;  //https://dzone.com/articles/interrupting-executor-tasks
         } while (!hash.substring(0, zerosCnt).equals(nZeros));
 
         timeToCreateBlock = (System.currentTimeMillis() - timestamp) / 100;
@@ -49,9 +57,6 @@ public class Block implements Serializable {
         } else {
             zerosCntMessage = "N stays the same";
         }
-
-//        System.out.println("---from mineBlock():  zerosCntMessage: " + zerosCntMessage + "| zerosCnt: " + zerosCnt);
-
         return hash;
     }
 
@@ -75,16 +80,8 @@ public class Block implements Serializable {
         return timestamp;
     }
 
-    public void setTimestamp(long timestamp) {
-        this.timestamp = timestamp;
-    }
-
     public int getNonce() {
         return nonce;
-    }
-
-    public void setNonce(int nonce) {
-        this.nonce = nonce;
     }
 
     public String getData() {
@@ -107,20 +104,8 @@ public class Block implements Serializable {
         return prevHash;
     }
 
-    public void setPrevHash(String prevHash) {
-        this.prevHash = prevHash;
-    }
-
-    public static long getSerialVersionUID() {
-        return serialVersionUID;
-    }
-
     public long getTimeToCreateBlock() {
         return timeToCreateBlock;
-    }
-
-    public void setTimeToCreateBlock(long timeToCreateBlock) {
-        this.timeToCreateBlock = timeToCreateBlock;
     }
 
     public int getMinerId() {

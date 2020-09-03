@@ -2,15 +2,18 @@ package blockchain;
 
 import blockchain.block.Block;
 import blockchain.block.Blockchain;
-import blockchain.util.BlockchainUtils;
+import blockchain.util.ChainUtils;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.*;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class Main {
 
-    public static volatile Future taskResults = null;
+//    public static volatile Future taskResults = null;
 
     public static void main(String[] args) {
 
@@ -20,41 +23,39 @@ public class Main {
 //        System.out.println();
 
         List<Callable<Block>> tasks = new ArrayList<>();
-        ExecutorService executor = Executors.newFixedThreadPool(2);
-//        BlockchainUtils blockchainUtils = new BlockchainUtils();
-        Blockchain blockchain = BlockchainUtils.initBlockchain();
-//        Blockchain blockchain = new Blockchain();
+        ExecutorService executor = Executors.newFixedThreadPool(16);
+        Blockchain blockchain = ChainUtils.initBlockchain();
 
         //invokeAny - Executes the given tasks, returning the result of one that has completed successfully (i.e., without throwing an exception), if any do before the given timeout elapses. Upon normal or exceptional return, tasks that have not completed are cancelled. The results of this method are undefined if the given collection is modified while this operation is in progress.
         for (int i = 1; i < 9; i++) {
             tasks.add(new Miner(i, blockchain));
         }
 
-//        Integer lastGeneratedBlockId = 0;
-
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 5; i++) {
             try {
                 Block generatedBlock = executor.invokeAny(tasks);
-                System.out.printf("%n ++++++++++++ from main loop, current i: %d | generatedBlock.getId(): %d " +
-                                "| blockchain.getLastBlockId().orElse(): %d| blockchain.getZerosCnt(): %d ++++++++++%n"
+                /*System.out.printf("%n ++++++++++++ from main loop, current i: %d | generatedBlock.getId(): %d " +
+                                "| blockchain.getLastBlockId().orElse(): %d| blockchain.getZerosCnt(): %d | attempts made: %d ++++++++++%n"
                         , i, generatedBlock.getId(), blockchain.getLastBlockId().orElse(-9999999),
-                        blockchain.getZerosCnt());
-                System.out.println("\n---generatedBlock.toString():\n" + generatedBlock.toString() + "\n");
-                BlockchainUtils.saveBlockchain(blockchain, generatedBlock);
+                        blockchain.getZerosCnt(), generatedBlock.getAttempts());
+                System.out.println("\n---generatedBlock.toString():\n" + generatedBlock.toString() + "\n");*/
+                if (ChainUtils.isBlockValid(blockchain, generatedBlock)) {
+                    ChainUtils.saveBlockchain(blockchain, generatedBlock);
+                }
             } catch (InterruptedException | ExecutionException e) {
                 e.printStackTrace();
             }
-//            blockchain = Blockchain.initBlockchain();
         }
 
-        executor.shutdown();
-//        System.out.println(executor.shutdownNow().toString());
+//        executor.shutdown();
 
-//        blockchain.outputChain(0, lastGeneratedBlockId);
-        BlockchainUtils.outputChain(blockchain, 0, 5);
+//        System.out.println("Forcing shutdown...");
+        executor.shutdownNow();
+
+//        ChainUtils.outputChain(blockchain, 0, 5);
 
         //print last 5 blocks to avoid error in test #2:
-//        blockchain.outputChain(blockchain,blockchain.getLastBlockId().orElse(5) - 5, 5);
+        ChainUtils.outputChain(blockchain, blockchain.getLastBlockId().orElse(5) - 5, 5);
     }
 }
 
