@@ -3,7 +3,6 @@ package blockchain.block;
 import blockchain.util.StringUtil;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.Random;
 
 public class Block implements Serializable {
@@ -15,31 +14,49 @@ public class Block implements Serializable {
     private String hash;
     private String prevHash;
     private long timeToCreateBlock;
-    int attempts;
+    private int minerId;
+    private int zerosCnt;
+    private String zerosCntMessage;
 
 // We represent a block by a hash value. Generating the hash value of a block is called “mining” the block.
 // Mining a block is typically computationally expensive to do as it serves as the “proof of work”.
 
-    public Block(int id, String prevHash, String data, int zerosCnt) {
+    public Block(int id, String prevHash, String data, int minerId, int zerosCnt) {
         this.id = id;
         this.prevHash = prevHash;
         this.data = data;
-        this.timestamp = new Date().getTime();
-        this.hash = (zerosCnt == 0) ? calculateHash() : mineBlock(zerosCnt);
+        this.timestamp = System.currentTimeMillis();
+        this.zerosCnt = zerosCnt;
+        this.hash = /*(zerosCnt == 0) ? calculateHash() :*/ mineBlock();
+        this.minerId = minerId;
     }
 
-    private String mineBlock(int zerosCnt) {
+    private String mineBlock() {
+
         String nZeros = new String(new char[zerosCnt]).replace('\0', '0');
+
         do {
-            nonce = new Random().nextInt(Integer.MAX_VALUE);
-            attempts++;
+            nonce = new Random().nextInt(10000);
             hash = calculateHash();
         } while (!hash.substring(0, zerosCnt).equals(nZeros));
-        timeToCreateBlock = (new Date().getTime() - timestamp) / 1000;
+
+        timeToCreateBlock = (System.currentTimeMillis() - timestamp) / 100;
+
+        if (timeToCreateBlock < 1 /*&& zerosCnt < 4*/) {
+            zerosCntMessage = "N was increased to " + ++zerosCnt;
+        } else if (timeToCreateBlock > 1) {
+            zerosCntMessage = "N was decreased to " + --zerosCnt;
+        } else {
+            zerosCntMessage = "N stays the same";
+        }
+
+//        System.out.println("---from mineBlock():  zerosCntMessage: " + zerosCntMessage + "| zerosCnt: " + zerosCnt);
+
         return hash;
     }
 
     public String calculateHash() {
+
         return StringUtil.applySha256(id
                 + timestamp
                 + prevHash
@@ -106,17 +123,34 @@ public class Block implements Serializable {
         this.timeToCreateBlock = timeToCreateBlock;
     }
 
-    public int getAttempts() {
-        return attempts;
+    public int getMinerId() {
+        return minerId;
     }
 
-    public void setAttempts(int attempts) {
-        this.attempts = attempts;
+    public void setMinerId(int minerId) {
+        this.minerId = minerId;
+    }
+
+    public int getZerosCnt() {
+        return zerosCnt;
+    }
+
+    public void setZerosCnt(int zerosCnt) {
+        this.zerosCnt = zerosCnt;
+    }
+
+    public String getZerosCntMessage() {
+        return zerosCntMessage;
+    }
+
+    public void setZerosCntMessage(String zerosCntMessage) {
+        this.zerosCntMessage = zerosCntMessage;
     }
 
     @Override
     public String toString() {
         return String.format("Block:%n"
+                        + "Created by miner # %d%n"
                         + "Id: %d%n"
                         + "Timestamp: %d%n"
                         + "Magic number: %d%n"
@@ -124,15 +158,16 @@ public class Block implements Serializable {
                         + "%s%n"
                         + "Hash of the block:%n"
                         + "%s%n"
-                        + "Block was generating for %d seconds"
+                        + "Block was generating for %d seconds%n"
+                        + zerosCntMessage
                 ,
+                this.minerId,
                 this.id,
                 this.timestamp,
                 this.nonce,
                 this.prevHash,
                 this.hash,
                 this.timeToCreateBlock
-//                , this.attempts
         );
     }
 }

@@ -9,5 +9,9 @@ class Main {
         LocalDate date = LocalDate.parse(scanner.nextLine());
 
         System.out.println(date.minusDays(10));
+
+        for (int i = 0; i < Integer.MAX_VALUE; i++) {
+            if (i % 2 == 0)
+        }
     }
 }

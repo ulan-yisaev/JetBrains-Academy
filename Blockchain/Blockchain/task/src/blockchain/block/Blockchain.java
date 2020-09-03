@@ -1,60 +1,16 @@
 package blockchain.block;
 
-import blockchain.util.SerializationUtils;
-
-import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Optional;
 
-public class Blockchain implements Serializable {
+public class Blockchain extends ArrayList<Block> implements Serializable {
 
     static final long serialVersionUID = 1L;
 
-    private static final String fileName = "blockchain.dat";
-    private final List<Block> chain;
-    private int lastBlockId;
-
-//    private static List<Block> chain;
-
-    private Blockchain() {
-        chain = new ArrayList<>();
-    }
-
-    public static Blockchain initBlockchain() {
-        try {
-            return SerializationUtils.deserialize(fileName);
-        } catch (IOException | ClassNotFoundException e) {
-            System.out.println("Can't deserialize blockchain from the disk!\n");
-            e.printStackTrace();
-        }
-        return new Blockchain();
-    }
-
-    public List<Block> generate(int id, String data, int zerosCnt) {
-        String prevHash = chain.isEmpty() ? "0" : chain.get(id - 2).getHash();
-        Block block = new Block(id, prevHash, data, zerosCnt);
-        chain.add(block);
-        this.lastBlockId = block.getId();
-        saveBlockchain();
-        return chain;
-    }
-
-    private void saveBlockchain() {
-        try {
-            // The default serialization mechanism for an object writes the class of the object, the class signature,
-            // and the values of all non-transient and NON-STATIC fields.
-            SerializationUtils.serialize(this, fileName);
-        } catch (IOException e) {
-            System.out.println("Can't serialize this blockchain!\n");
-            e.printStackTrace();
-        }
-    }
-
-   /* public Block get(int index) {
-        Objects.checkIndex(index, chain.size());
-        return chain.get(index);
-    }*/
+    private Blockchain chain;
+    private Integer lastBlockId;
+    private int zerosCnt;
 
     public boolean isChainValid(int zerosCnt) {
         Block currBlock;
@@ -90,17 +46,24 @@ public class Blockchain implements Serializable {
         return true;
     }
 
-    public void outputChain(int idx, int n) {
-        for (int i = idx; i < idx + n; i++) {
-            System.out.println(chain.get(i).toString() + "\n");
-        }
-    }
-
     public static long getSerialVersionUID() {
         return serialVersionUID;
     }
 
-    public int getLastBlockId() {
-        return lastBlockId;
+    public void setLastBlockId(Integer lastBlockId) {
+        this.lastBlockId = lastBlockId;
+    }
+
+    public Optional<Integer> getLastBlockId() {
+
+        return Optional.ofNullable(lastBlockId);
+    }
+
+    public int getZerosCnt() {
+        return zerosCnt;
+    }
+
+    public synchronized void setZerosCnt(int zerosCnt) {
+        this.zerosCnt = zerosCnt;
     }
 }

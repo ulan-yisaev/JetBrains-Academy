@@ -1,6 +1,5 @@
 class Pizza {
 
-    //Fix this method
     public static void cookVeganPizza() throws InterruptedException {
         Base base = new Base();
         Tomatoes tomatoes = new Tomatoes();
@@ -13,10 +12,10 @@ class Pizza {
         stepOfCook.add(bake);
         for (Thread step : stepOfCook) {
             step.start();
+            step.join();
         }
     }
 
-    //Don't change the code below
     static class Base extends Thread {
         @Override
         public void run() {

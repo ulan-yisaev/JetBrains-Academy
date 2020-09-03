@@ -12,7 +12,8 @@ public class StringUtil {
             byte[] hash = digest.digest(input.getBytes("UTF-8"));
             StringBuilder hexString = new StringBuilder();
             for (byte elem: hash) {
-                String hex = Integer.toHexString(0xff & elem);
+//                String hex = Integer.toHexString(0xff & elem);    see https://rules.sonarsource.com/java/RSPEC-4425
+                String hex = String.format("%02X", elem);
                 if(hex.length() == 1) hexString.append('0');
                 hexString.append(hex);
             }

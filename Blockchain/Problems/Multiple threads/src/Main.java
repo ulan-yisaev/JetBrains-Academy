@@ -2,11 +2,17 @@ public class Main {
 
     public static void main(String[] args) {
 
-        // create instances and start threads here
+        Thread t1 = new WorkerThread();
+        t1.setName("worker-1");
+
+        Thread t2 = new WorkerThread();
+        t2.setName("worker-2");
+
+        t1.start();
+        t2.start();
     }
 }
 
-// Don't change the code below
 class WorkerThread extends Thread {
 
     private static final int NUMBER_OF_LINES = 3;

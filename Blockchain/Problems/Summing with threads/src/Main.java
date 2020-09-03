@@ -14,18 +14,23 @@ public class Main {
         int from2Incl = scanner.nextInt(); // left limit of the second range
         int to2Incl = scanner.nextInt();   // right limit of the second range
 
-        RangeSummator summator1 = new RangeSummator(from1Incl, to1Incl); // first summator
-        RangeSummator summator2 = new RangeSummator(from2Incl, to2Incl); // second summator
+        RangeSummator summator1 = new RangeSummator(from1Incl, to1Incl);
+        RangeSummator summator2 = new RangeSummator(from2Incl, to2Incl);
+
+        summator1.start();
+        summator1.join();
+
+        summator2.start();
+        summator2.join();
 
         long partialSum1 = summator1.getResult();
         long partialSum2 = summator2.getResult();
 
-        long sum = partialSum1 + partialSum2; // the sum is 0, fix it!
+        long sum = partialSum1 + partialSum2;
 
         System.out.println(sum);
     }
 
-    //Don't change the code below
     static class RangeSummator extends Thread {
 
         int fromIncl;

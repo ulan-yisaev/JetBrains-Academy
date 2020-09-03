@@ -1,8 +1,10 @@
 package blockchain.util;
 
+import blockchain.block.Block;
 import blockchain.block.Blockchain;
 
 import java.io.*;
+import java.util.List;
 
 public class SerializationUtils {
 
