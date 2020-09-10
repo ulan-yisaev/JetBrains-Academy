@@ -1,6 +1,5 @@
-###### Project: Blockchain
+## Project: [Blockchain](https://hyperskill.org/projects/50?track=1)
 
-https://hyperskill.org/projects/50?track=1
 
 **About:**
 
