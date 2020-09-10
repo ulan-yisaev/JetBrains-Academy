@@ -1,6 +1,5 @@
-###### Project: Web Quiz Engine
+## Project: [Web Quiz Engine](https://hyperskill.org/projects/91?track=1)
 
-https://hyperskill.org/projects/91?track=1
 
 **About**
 
